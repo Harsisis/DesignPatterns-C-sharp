@@ -1,6 +1,7 @@
 ﻿using DesignPatterns.entities;
 using DesignPatterns.entities.Catalogue;
 using DesignPatterns.entities.Document;
+using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
 using DesignPatterns.entities.Utils;
@@ -86,6 +87,16 @@ namespace DesignPatterns
             Commande commandeLu = new CommandeLuxembourg(100f);
             commandeLu.Affiche();
 
+            Console.WriteLine("\n\n########################## pattern BRIDGE ##########################");
+            List<FormulaireImmatriculation> forms = new List<FormulaireImmatriculation>();
+            forms.Add(new FormulaireImmatriculationFrance("AZE-123-QSD"));// true
+            forms.Add(new FormulaireImmatriculationFrance("AZ 1234"));// false
+            forms.Add(new FormulaireImmatriculationLuxembourg("AZE-123-QSD"));// true
+            forms.Add(new FormulaireImmatriculationLuxembourg("AZ 1234"));// false
+
+            forms.ForEach(delegate (FormulaireImmatriculation formImmat) {
+                formImmat.ControleSaisie();
+            });
         }
     }
 }
