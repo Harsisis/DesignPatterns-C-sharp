@@ -4,18 +4,18 @@ using System.Text;
 
 namespace DesignPatterns.entities.Vehicule {
     public class Sujet {
-        public List<Observateur> Observateurs { get; set; }
+        public List<IObservateur> Observateurs { get; set; }
 
-        public void Ajoute(Observateur Observateur) {
+        public void Ajoute(IObservateur Observateur) {
             Observateurs.Add(Observateur);
         }
-        public void Retire(Observateur Observateur) {
+        public void Retire(IObservateur Observateur) {
             Observateurs.Remove(Observateur);
         }
 
         public void Notifie() {
-            Observateurs.ForEach(delegate (Observateur obs) {
-                obs.actualise();
+            Observateurs.ForEach(delegate (IObservateur obs) {
+                obs.Actualise();
             });
         }
     }

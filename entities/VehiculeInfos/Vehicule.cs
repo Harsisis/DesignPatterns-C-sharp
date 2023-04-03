@@ -21,6 +21,7 @@ namespace DesignPatterns.entities.Vehicule {
             return Prix;
         }
         public Vehicule(string Description, float Prix) {
+            this.Observateurs = new List<IObservateur>();
             this.Description = Description;
             this.Prix = Prix;
         }

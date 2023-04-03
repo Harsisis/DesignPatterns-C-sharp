@@ -1,6 +1,8 @@
 ﻿using DesignPatterns.entities;
 using DesignPatterns.entities.Catalogue;
 using DesignPatterns.entities.Document;
+using DesignPatterns.entities.Order;
+using DesignPatterns.entities.Order.OrderType;
 using DesignPatterns.entities.Utils;
 using DesignPatterns.entities.Vehicule;
 using DesignPatterns.entities.Vehicule.AnimationVehicule;
@@ -8,7 +10,8 @@ using DesignPatterns.entities.Vehicule.ComposantGraphiqueVehicule;
 using System;
 using System.Collections.Generic;
 
-namespace DesignPatterns {
+namespace DesignPatterns
+{
     internal class Program {
         static void Main(string[] args) {
 
@@ -16,7 +19,7 @@ namespace DesignPatterns {
             Produit prod1 = new Produit("prod1", "desc1");
             Produit prod2 = new Produit("prod2", "desc2");
 
-            Commande commande1 = new Commande();
+            Commande commande1 = new entities.Order.OrderType.CommandeFrance(100f);
             commande1.ajouteProduit(prod1);
             commande1.ajouteProduit(prod2);
 
@@ -52,11 +55,11 @@ namespace DesignPatterns {
             Console.WriteLine("\n\n########################## pattern DECORATOR ##########################");
             VueCatalogue vue3 = new VueCatalogue(new DessinUnVehiculeLigne(), new MarqueDecorateur("Porsche"));
             vue3.ComposantGraphiqueVehicule.Affiche();
-            VueCatalogue vue4 = new VueCatalogue(new DessinUnVehiculeLigne(), new VueVehicule(new AnimationProxy()));
+            VueCatalogue vue4 = new VueCatalogue(new DessinUnVehiculeLigne(), new VueVehicule(new AnimationProxy(), new Vehicule("desc", 1000f)));
             vue4.ComposantGraphiqueVehicule.Affiche();
 
             Console.WriteLine("\n\n########################## pattern PROXY ##########################");
-            VueVehicule vueVehicule1 = new VueVehicule(new AnimationProxy());
+            VueVehicule vueVehicule1 = new VueVehicule(new AnimationProxy(), new Vehicule("desc", 1000f));
             vueVehicule1.Animation.Clic();
             Console.WriteLine("");
             vueVehicule1.Animation.Dessine();
@@ -64,10 +67,24 @@ namespace DesignPatterns {
             Console.WriteLine("\n\n########################## pattern FACADE ##########################");
             WebServiceAuto serviceAuto = new WebServiceAuto();
             List<entities.Vehicule.Vehicule> vehicules = serviceAuto.ChercherVehicules(1000f, 10f);
-            vehicules.ForEach(delegate (entities.Vehicule.Vehicule vehicule) {
+            vehicules.ForEach(delegate (Vehicule vehicule) {
                 Console.WriteLine(vehicule.ToString());
             });
-            Console.WriteLine(vehicules.Count);
+            Console.WriteLine("number of vehicles found : " + vehicules.Count);// 4
+
+            Console.WriteLine("\n\n########################## pattern OBSERVER ##########################");
+            Vehicule vehiculeObs = new Vehicule("description a changer", 1000f);
+            VueVehicule vueVehiculeObs = new VueVehicule(new AnimationProxy(), vehiculeObs);
+            vehiculeObs.Ajoute(vueVehiculeObs);
+            Console.WriteLine("should print new car informations");
+            vehiculeObs.SetPrix(2000f);
+            vehiculeObs.setDescription("test");
+
+            Console.WriteLine("\n\n########################## pattern TEMPLATE ##########################");
+            Commande commandeFr = new CommandeFrance(100f);
+            commandeFr.Affiche();
+            Commande commandeLu = new CommandeLuxembourg(100f);
+            commandeLu.Affiche();
 
         }
     }
