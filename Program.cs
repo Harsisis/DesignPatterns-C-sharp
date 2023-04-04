@@ -4,10 +4,12 @@ using DesignPatterns.entities.Document;
 using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
+using DesignPatterns.entities.Societe;
 using DesignPatterns.entities.Utils;
 using DesignPatterns.entities.Vehicule;
 using DesignPatterns.entities.Vehicule.AnimationVehicule;
 using DesignPatterns.entities.Vehicule.ComposantGraphiqueVehicule;
+using DesignPatterns.entities.Visiteur;
 using System;
 using System.Collections.Generic;
 
@@ -97,6 +99,33 @@ namespace DesignPatterns
             forms.ForEach(delegate (FormulaireImmatriculation formImmat) {
                 formImmat.ControleSaisie();
             });
+
+            Console.WriteLine("\n\n########################## pattern VISITOR ##########################");
+            Societe soc1 = new SocieteSansFiliale("nom soc1", "mail@soc1.com", "1 adresses societe");
+            Societe soc2 = new SocieteSansFiliale("nom soc3", "mail@soc3.com", "3 adresses societe");
+            Societe soc3 = new SocieteSansFiliale("nom soc4", "mail@soc4.com", "4 adresses societe");
+            Societe soc4 = new SocieteSansFiliale("nom soc5", "mail@soc5.com", "5 adresses societe");
+            Societe soc5 = new SocieteSansFiliale("nom soc6", "mail@soc6.com", "6 adresses societe");
+
+            Societe socMere1 = new SocieteMere("nom soc2", "mail@soc2.com", "2 adresses societe");
+
+            socMere1.AjouteFiliale(soc1);
+            socMere1.AjouteFiliale(soc2);
+            socMere1.AjouteFiliale(soc3);
+            socMere1.AjouteFiliale(soc4);
+            socMere1.AjouteFiliale(soc5);
+
+            IVisiteur visiteur1 = new VisiteurCalculeCoutEntretien();
+            IVisiteur visiteur2 = new VisiteurMailingCommercial();
+
+            Console.WriteLine("\n * visite de societe sans filiale, 2 visitors");
+            soc1.AccepterVisiteur(visiteur1);
+            soc1.AccepterVisiteur(visiteur2);
+
+            Console.WriteLine("\n * visite de societe avec 5 filiales, 1 visitor");
+            socMere1.AccepterVisiteur(visiteur2);
+
+            Console.WriteLine("\n\n########################## pattern FACTORY METHOD ##########################");
         }
     }
 }
