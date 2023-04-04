@@ -12,5 +12,13 @@ namespace DesignPatterns.entities.Order.OrderType {
         public override void CalculMontantTva() {
             MontantTva = MontantHt * TVA;
         }
+
+        public override void Paye() {
+            throw new NotImplementedException();
+        }
+
+        public override bool Valid() {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DesignPatterns.entities;
 using DesignPatterns.entities.Catalogue;
+using DesignPatterns.entities.Client;
 using DesignPatterns.entities.Document;
 using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
@@ -126,6 +127,17 @@ namespace DesignPatterns
             socMere1.AccepterVisiteur(visiteur2);
 
             Console.WriteLine("\n\n########################## pattern FACTORY METHOD ##########################");
+            Client client1 = new ClientComptant();
+            Client client2 = new ClientCredit();
+
+            client1.NouvelleCommande(100f);
+            client1.NouvelleCommande(10f);
+
+            client2.NouvelleCommande(100f);
+            client2.NouvelleCommande(10f);// commande invalide
+
+            Console.WriteLine("\nnombre de commandes pour le client 1 : " + client1.Commandes.Count);
+            Console.WriteLine("nombre de commandes pour le client 2 : " + client2.Commandes.Count);
         }
     }
 }

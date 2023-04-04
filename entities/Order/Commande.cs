@@ -42,6 +42,9 @@ namespace DesignPatterns.entities.Order
         }
         public abstract void CalculMontantTva();
 
+        public abstract void Paye();
+        public abstract bool Valid();
+
         public void Affiche() {
             Console.WriteLine("prix TTC : " + MontantTtc + "e dont " + MontantTva + "e de TVA");
         }
