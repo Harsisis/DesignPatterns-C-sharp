@@ -5,7 +5,8 @@ using DesignPatterns.entities.Document;
 using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
-using DesignPatterns.entities.Prototype;
+using DesignPatterns.entities.Patterns.Composite;
+using DesignPatterns.entities.Patterns.Prototype;
 using DesignPatterns.entities.Societe;
 using DesignPatterns.entities.Utils;
 using DesignPatterns.entities.Vehicule;
@@ -141,7 +142,6 @@ namespace DesignPatterns
             Console.WriteLine("nombre de commandes pour le client 2 : " + client2.Commandes.Count);
 
             Console.WriteLine("\n\n########################## pattern PROTOTYPE ##########################");
-
             Circle cir1 = new Circle();
             cir1.X = 5;
             cir1.Y = 5;
@@ -152,6 +152,17 @@ namespace DesignPatterns
 
             cir1.Afficher();
             cir1Copy.Afficher();
+
+            Console.WriteLine("\n\n########################## pattern COMPOSITE ##########################");
+            SocieteComp societeMere = new SocieteMereComp();
+            societeMere.AjouteFiliale(new SocieteSansFilialeComp());
+            societeMere.AjouteFiliale(new SocieteSansFilialeComp());
+            SocieteComp societeMereBis = new SocieteMereComp();
+            societeMereBis.AjouteFiliale(new SocieteSansFilialeComp());
+            societeMereBis.AjouteFiliale(new SocieteSansFilialeComp());
+            societeMereBis.AjouteFiliale(new SocieteSansFilialeComp());
+            societeMere.AjouteFiliale(societeMereBis);
+            Console.WriteLine("check using breakPoint");
         }
     }
 }
