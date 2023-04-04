@@ -5,6 +5,7 @@ using DesignPatterns.entities.Document;
 using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
+using DesignPatterns.entities.Prototype;
 using DesignPatterns.entities.Societe;
 using DesignPatterns.entities.Utils;
 using DesignPatterns.entities.Vehicule;
@@ -138,6 +139,19 @@ namespace DesignPatterns
 
             Console.WriteLine("\nnombre de commandes pour le client 1 : " + client1.Commandes.Count);
             Console.WriteLine("nombre de commandes pour le client 2 : " + client2.Commandes.Count);
+
+            Console.WriteLine("\n\n########################## pattern PROTOTYPE ##########################");
+
+            Circle cir1 = new Circle();
+            cir1.X = 5;
+            cir1.Y = 5;
+            cir1.Radius = 10;
+            cir1.Color = "red";
+
+            Circle cir1Copy = (Circle) cir1.Clone();
+
+            cir1.Afficher();
+            cir1Copy.Afficher();
         }
     }
 }
