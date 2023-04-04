@@ -6,6 +6,7 @@ using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
 using DesignPatterns.entities.Patterns.Composite;
+using DesignPatterns.entities.Patterns.Flyweight;
 using DesignPatterns.entities.Patterns.Prototype;
 using DesignPatterns.entities.Societe;
 using DesignPatterns.entities.Utils;
@@ -163,6 +164,16 @@ namespace DesignPatterns
             societeMereBis.AjouteFiliale(new SocieteSansFilialeComp());
             societeMere.AjouteFiliale(societeMereBis);
             Console.WriteLine("check using breakPoint");
+
+            Console.WriteLine("\n\n########################## pattern FLYWEIGHT ##########################");
+            Forest forest = new Forest();
+            forest.PlantTree(10, 10, "Hetre", "Claire", "Lisse");
+            forest.PlantTree(11, 10, "Hetre", "Claire", "Lisse");
+            forest.PlantTree(12, 10, "Hetre", "Claire", "Lisse");
+            forest.PlantTree(13, 10, "Hetre", "Claire", "Lisse");
+            forest.PlantTree(14, 10, "Hetre", "Claire", "Lisse");
+            forest.Draw();
+
         }
     }
 }
