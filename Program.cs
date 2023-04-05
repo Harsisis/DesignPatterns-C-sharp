@@ -276,6 +276,8 @@ namespace DesignPatterns
             catalogue.MoveNext();
             Console.WriteLine(catalogue.Item());// megane
 
+
+
         }
     }
 }
