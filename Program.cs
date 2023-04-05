@@ -243,7 +243,7 @@ namespace DesignPatterns
             authDialog.Login.Clicked();
             authDialog.ValidBtn.Clicked();
 
-            Console.WriteLine("\n\n########################## pattern ITERATOR ##########################");
+            Console.WriteLine("\n\n########################## pattern ITERATOR GURU ##########################");
             NumbersCollection collection = new NumbersCollection();
             collection.Add(10);
             collection.Add(11);
@@ -257,7 +257,24 @@ namespace DesignPatterns
             iterator.MoveNext();
             iterator.MoveNext();
             iterator.MoveNext();
-            Console.WriteLine(iterator.Current());// 13
+            iterator.MoveNext();
+            iterator.MoveNext();
+            Console.WriteLine(iterator.Current());// 15
+            iterator.Reset();
+            Console.WriteLine(iterator.Current());// 10
+
+            Console.WriteLine("\n\n########################## pattern ITERATOR ##########################");
+            IterateurVehicule iterateurVehicule = new IterateurVehicule();
+            iterateurVehicule.Add("clio");
+            iterateurVehicule.Add("twingo");
+            iterateurVehicule.Add("megane");
+            iterateurVehicule.Add("scenic");
+            iterateurVehicule.Add("espace");
+            CatalogueWs<IterateurVehicule, string> catalogue = new CatalogueWs<IterateurVehicule, string>(iterateurVehicule);
+            Console.WriteLine(catalogue.Item());// clio
+            catalogue.MoveNext();
+            catalogue.MoveNext();
+            Console.WriteLine(catalogue.Item());// megane
 
         }
     }
