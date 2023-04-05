@@ -8,6 +8,8 @@ using DesignPatterns.entities.Order.OrderType;
 using DesignPatterns.entities.Patterns.AbstractFactory;
 using DesignPatterns.entities.Patterns.AbstractFactory.Modern;
 using DesignPatterns.entities.Patterns.AbstractFactory.Victorian;
+using DesignPatterns.entities.Patterns.Builder;
+using DesignPatterns.entities.Patterns.Builder.Pizza;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
 using DesignPatterns.entities.Patterns.MementoGuru;
@@ -205,6 +207,12 @@ namespace DesignPatterns
             modernFactory.CreateChair().Show();
             modernFactory.CreateSofa().Show();
             modernFactory.CreateWardrobe().Show();
+
+            Console.WriteLine("\n\n########################## pattern BUILDER ##########################");
+            PizzaDirector pizzaDirector = new PizzaDirector(new LePetitPizzaillolo());
+            pizzaDirector.ChorizoMozza();
+            pizzaDirector.CreamSalmon();
+
         }
     }
 }
