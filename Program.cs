@@ -15,6 +15,7 @@ using DesignPatterns.entities.Patterns.ChainOfResponsability.Handler;
 using DesignPatterns.entities.Patterns.CommandPattern;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
+using DesignPatterns.entities.Patterns.Iterator;
 using DesignPatterns.entities.Patterns.Mediator;
 using DesignPatterns.entities.Patterns.MementoGuru;
 using DesignPatterns.entities.Patterns.Prototype;
@@ -241,6 +242,22 @@ namespace DesignPatterns
             AuthenticationDialog authDialog = new AuthenticationDialog();
             authDialog.Login.Clicked();
             authDialog.ValidBtn.Clicked();
+
+            Console.WriteLine("\n\n########################## pattern ITERATOR ##########################");
+            NumbersCollection collection = new NumbersCollection();
+            collection.Add(10);
+            collection.Add(11);
+            collection.Add(12);
+            collection.Add(13);
+            collection.Add(14);
+            collection.Add(15);
+            collection.Add(16);
+            NumericOrderIterator iterator = new NumericOrderIterator(collection);
+            Console.WriteLine(iterator.Current());// 10
+            iterator.MoveNext();
+            iterator.MoveNext();
+            iterator.MoveNext();
+            Console.WriteLine(iterator.Current());// 13
 
         }
     }
