@@ -15,6 +15,7 @@ using DesignPatterns.entities.Patterns.ChainOfResponsability.Handler;
 using DesignPatterns.entities.Patterns.CommandPattern;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
+using DesignPatterns.entities.Patterns.Mediator;
 using DesignPatterns.entities.Patterns.MementoGuru;
 using DesignPatterns.entities.Patterns.Prototype;
 using DesignPatterns.entities.Societe;
@@ -235,6 +236,11 @@ namespace DesignPatterns
             invoker.Execute();
             invoker.SetCommand(new OpenCommand("open"));
             invoker.Execute();
+
+            Console.WriteLine("\n\n########################## pattern MEDIATOR ##########################");
+            AuthenticationDialog authDialog = new AuthenticationDialog();
+            authDialog.Login.Clicked();
+            authDialog.ValidBtn.Clicked();
 
         }
     }
