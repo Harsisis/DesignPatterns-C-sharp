@@ -7,6 +7,7 @@ using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
+using DesignPatterns.entities.Patterns.MementoGuru;
 using DesignPatterns.entities.Patterns.Prototype;
 using DesignPatterns.entities.Societe;
 using DesignPatterns.entities.Utils;
@@ -173,6 +174,22 @@ namespace DesignPatterns
             forest.PlantTree(13, 10, "Hetre", "Claire", "Lisse");
             forest.PlantTree(14, 10, "Hetre", "Claire", "Lisse");
             forest.Draw();
+
+            Console.WriteLine("\n\n########################## pattern MEMENTO ##########################");
+            Editor editor = new Editor();
+            editor.CurX = 10;
+            editor.CurY = 10;
+            editor.Text = "texte avant modification";
+            editor.SelectionWidth = 15;
+
+            Caretaker caretaker = new Caretaker(editor);
+            caretaker.MakeBackup();
+            caretaker.Editor.Text = "texte modifie";
+
+            caretaker.Editor.Show(); // texte modifie
+            caretaker.Undo();
+            caretaker.Editor.Show(); // texte avant modification
+
 
         }
     }
