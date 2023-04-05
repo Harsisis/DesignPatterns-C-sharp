@@ -5,6 +5,9 @@ using DesignPatterns.entities.Document;
 using DesignPatterns.entities.Immatriculation;
 using DesignPatterns.entities.Order;
 using DesignPatterns.entities.Order.OrderType;
+using DesignPatterns.entities.Patterns.AbstractFactory;
+using DesignPatterns.entities.Patterns.AbstractFactory.Modern;
+using DesignPatterns.entities.Patterns.AbstractFactory.Victorian;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
 using DesignPatterns.entities.Patterns.MementoGuru;
@@ -190,7 +193,18 @@ namespace DesignPatterns
             caretaker.Undo();
             caretaker.Editor.Show(); // texte avant modification
 
+            Console.WriteLine("\n\n########################## pattern ABSTRACT FACTORY ##########################");
+            IFurnitureFactory victorianFactory = new VictorianFactory();
+            victorianFactory.CreateTable().Show();
+            victorianFactory.CreateChair().Show();
+            victorianFactory.CreateSofa().Show();
+            victorianFactory.CreateWardrobe().Show();
 
+            IFurnitureFactory modernFactory = new ModernFactory();
+            modernFactory.CreateTable().Show();
+            modernFactory.CreateChair().Show();
+            modernFactory.CreateSofa().Show();
+            modernFactory.CreateWardrobe().Show();
         }
     }
 }
