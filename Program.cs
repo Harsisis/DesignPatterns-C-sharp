@@ -10,6 +10,8 @@ using DesignPatterns.entities.Patterns.AbstractFactory.Modern;
 using DesignPatterns.entities.Patterns.AbstractFactory.Victorian;
 using DesignPatterns.entities.Patterns.Builder;
 using DesignPatterns.entities.Patterns.Builder.Pizza;
+using DesignPatterns.entities.Patterns.ChainOfResponsability;
+using DesignPatterns.entities.Patterns.ChainOfResponsability.Handler;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
 using DesignPatterns.entities.Patterns.MementoGuru;
@@ -212,6 +214,19 @@ namespace DesignPatterns
             PizzaDirector pizzaDirector = new PizzaDirector(new LePetitPizzaillolo());
             pizzaDirector.ChorizoMozza();
             pizzaDirector.CreamSalmon();
+
+            Console.WriteLine("\n\n########################## pattern CHAIN OF RESPONSABILITY ##########################");
+            IHandler adminHandler = new AdminHandler();
+            IHandler userHandler = new ClientHandler();
+            IHandler visitorHandler = new VisitorHandler();
+
+            adminHandler.SetNext(userHandler);
+            userHandler.SetNext(visitorHandler);
+
+            adminHandler.Handle("admin");
+            adminHandler.Handle("connect");
+            adminHandler.Handle("visit");
+            adminHandler.Handle("Test");// request unhandled
 
         }
     }
