@@ -12,6 +12,7 @@ using DesignPatterns.entities.Patterns.Builder;
 using DesignPatterns.entities.Patterns.Builder.Pizza;
 using DesignPatterns.entities.Patterns.ChainOfResponsability;
 using DesignPatterns.entities.Patterns.ChainOfResponsability.Handler;
+using DesignPatterns.entities.Patterns.CommandPattern;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
 using DesignPatterns.entities.Patterns.MementoGuru;
@@ -227,6 +228,13 @@ namespace DesignPatterns
             adminHandler.Handle("connect");
             adminHandler.Handle("visit");
             adminHandler.Handle("Test");// request unhandled
+
+            Console.WriteLine("\n\n########################## pattern COMMAND ##########################");
+            Invoker invoker = new Invoker();
+            invoker.SetCommand(new SaveCommand("simple"));
+            invoker.Execute();
+            invoker.SetCommand(new OpenCommand("open"));
+            invoker.Execute();
 
         }
     }
