@@ -15,6 +15,7 @@ using DesignPatterns.entities.Patterns.ChainOfResponsability.Handler;
 using DesignPatterns.entities.Patterns.CommandPattern;
 using DesignPatterns.entities.Patterns.Composite;
 using DesignPatterns.entities.Patterns.Flyweight;
+using DesignPatterns.entities.Patterns.Interpretor;
 using DesignPatterns.entities.Patterns.Iterator;
 using DesignPatterns.entities.Patterns.Mediator;
 using DesignPatterns.entities.Patterns.MementoGuru;
@@ -27,6 +28,7 @@ using DesignPatterns.entities.Vehicule.ComposantGraphiqueVehicule;
 using DesignPatterns.entities.Visiteur;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace DesignPatterns
 {
@@ -276,7 +278,22 @@ namespace DesignPatterns
             catalogue.MoveNext();
             Console.WriteLine(catalogue.Item());// megane
 
+            Console.WriteLine("\n\n########################## pattern INTERPRETOR ##########################");
+            Context ctx = new Context();
+            Console.WriteLine("\nstart query 'vetement'");
+            IExpression query = new Select("key value", new From("vetement"));
+            List<string> result = query.Interpret(ctx);
+            result.ForEach(res => {
+                Console.WriteLine(res);
+            });
 
+            Console.WriteLine("\nstart query 'personne'");
+            ctx = new Context();
+            IExpression queryPerson = new Select("key value", new From("personne"));
+            result = queryPerson.Interpret(ctx);
+            result.ForEach(res => {
+                Console.WriteLine(res);
+            });
 
         }
     }

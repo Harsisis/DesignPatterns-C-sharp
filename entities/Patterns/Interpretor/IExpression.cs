@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace DesignPatterns.entities.Patterns.Interpretor {
-    public abstract class OperateurBinaire : Expression {
+    public interface IExpression {
+        public List<string> Interpret(Context ctx);
     }
 }
