@@ -31,7 +31,7 @@ namespace DesignPatterns.entities.Vehicule {
             Notifie();
         }
 
-        public string ToString() {
+        public override string ToString() {
             return Description + "  prix : " + Prix;
         }
     }

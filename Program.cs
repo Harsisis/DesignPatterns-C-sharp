@@ -280,17 +280,25 @@ namespace DesignPatterns
 
             Console.WriteLine("\n\n########################## pattern INTERPRETOR ##########################");
             Context ctx = new Context();
-            Console.WriteLine("\nstart query 'vetement'");
+            Console.WriteLine("\nstart query on : 'vetement'");
             IExpression query = new Select("key value", new From("vetement"));
             List<string> result = query.Interpret(ctx);
             result.ForEach(res => {
                 Console.WriteLine(res);
             });
 
-            Console.WriteLine("\nstart query 'personne'");
+            Console.WriteLine("\nstart query on : 'personne'");
             ctx = new Context();
             IExpression queryPerson = new Select("key value", new From("personne"));
             result = queryPerson.Interpret(ctx);
+            result.ForEach(res => {
+                Console.WriteLine(res);
+            });
+
+            Console.WriteLine("\nstart query on : 'vetement', type : 'T-shirt' ");
+            ctx = new Context();
+            IExpression queryVetementTshirt = new Select("", new From("vetement", new Where(row => row.ToLower().Contains("T-shirt".ToLower()))));
+            result = queryVetementTshirt.Interpret(ctx);
             result.ForEach(res => {
                 Console.WriteLine(res);
             });
